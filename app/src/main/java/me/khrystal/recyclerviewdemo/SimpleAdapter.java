@@ -31,7 +31,22 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleViewHolder> {
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item, parent, false);
-        SimpleViewHolder holder = new SimpleViewHolder(v, parent);
+        final SimpleViewHolder holder = new SimpleViewHolder(v, parent);
+        // TODO: 16/4/28
+        if (mClickListener != null) {
+            holder.mItemButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mClickListener.onItemClick(dataList.get(holder.getLayoutPosition()),v, holder.getLayoutPosition());
+                }
+            });
+            holder.mItemText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mClickListener.onItemClick(dataList.get(holder.getLayoutPosition()),v,holder.getLayoutPosition());
+                }
+            });
+        }
         return holder;
     }
 
@@ -74,5 +89,12 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleViewHolder> {
         int size = dataList.size();
         dataList.clear();
         this.notifyItemRangeRemoved(0, size);
+    }
+
+    // TODO: 16/4/28
+    protected OnItemClickListener mClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mClickListener = listener;
     }
 }

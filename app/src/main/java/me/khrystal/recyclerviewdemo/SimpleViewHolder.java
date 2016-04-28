@@ -18,8 +18,8 @@ import android.widget.Toast;
  */
 public class SimpleViewHolder extends BaseViewHolder{
 
-    private Button mItemButton;
-    private TextView mItemText;
+    public Button mItemButton;
+    public TextView mItemText;
 
     private Context mContext;
     private String mString;
@@ -29,8 +29,6 @@ public class SimpleViewHolder extends BaseViewHolder{
         mContext = itemView.getContext();
         mItemButton = (Button)itemView.findViewById(R.id.item_button);
         mItemText = (TextView)itemView.findViewById(R.id.item_text);
-        addOnClickListener(mItemButton);
-        addOnClickListener(mItemText);
     }
 
     public void bind(String item){
@@ -39,18 +37,5 @@ public class SimpleViewHolder extends BaseViewHolder{
         mString = item;
         mItemButton.setText(item);
         mItemText.setText(item);
-    }
-
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()){
-            case R.id.item_button:
-                Toast.makeText(mContext,"button :"+mString,Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.item_text:
-                Toast.makeText(mContext,"text :" + mString,Toast.LENGTH_SHORT).show();
-                break;
-        }
     }
 }

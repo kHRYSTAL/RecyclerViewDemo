@@ -14,7 +14,7 @@ import android.view.View;
  * @UpdateUser:
  * @UpdateDate:
  */
-public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public abstract class BaseViewHolder extends RecyclerView.ViewHolder{
     protected Activity mActivity;
     protected Fragment mFragment;
     public View mView;
@@ -35,21 +35,4 @@ public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         }
     }
 
-    public void addOnClickListener(View view) {
-        if (view != null)
-            view.setOnClickListener(this);
-    }
-
-    /**
-     * 预留接口 检查是否需要登录
-     * @return
-     */
-    protected boolean checkLogin() {
-        return true;
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }

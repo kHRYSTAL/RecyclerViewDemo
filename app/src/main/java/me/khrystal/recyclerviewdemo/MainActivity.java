@@ -6,7 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mAdapter = new SimpleAdapter(this,mDataList);
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(Object data, View view, int position) {
+                switch (view.getId()){
+                    case R.id.item_button:
+                        Toast.makeText(MainActivity.this,"clickbutton:"+position,Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.item_text:
+                        Toast.makeText(MainActivity.this,"clicktext:"+data,Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void onItemLongClick(Object data, View view, int position) {
+                //nothing todo
+            }
+        });
 
         mRecyclerView.setAdapter(mAdapter);
     }
